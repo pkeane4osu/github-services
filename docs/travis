@@ -1,32 +1,13 @@
-Travis
-======
+# Travis CI
+Travis CI is a distributed continuous integration service.
 
-Travis – a distributed build server tool for the Ruby community
+By enabling this hook, Travis CI will listen to push and pull request events to trigger new builds.
 
+For more details about Travis, go to http://docs.travis-ci.com.
 
-Install Notes
--------------
+## Automatic configuration from Travis CI
+We recommend using the Travis profile page at https://travis-ci.org/profile to manage your hooks.
+For private repositories, use https://travis-ci.com/profile.
 
-  1.  Create an account (on travis-ci.org you can just sign in with GitHub)
-  2.  Enter your credentials
-      - The token which you can find on the Travis profile page
-      Optional steps:
-      - Enter the username who the travis-token belongs to (defaults to the repository owner)
-      - Enter the host of your Travis installation (defaults to http://travis-ci.org), the protocol-prefix is optional and defaults to "http://".
-
-  3.  Check the "Active" checkbox and click "Update Settings".
-  4.  Click on the "Travis" service name and then click the "Test Hook" link.
-  5.  You should receive an email from Travis once the build has completed
-
-For more details about Travis, go to http://github.com/travis-ci/travis-ci
-
-
-Developer Notes
----------------
-
-data
-  - token
-  - user
-  - domain
-
-The token has to belong to the user, of course.
+## Travis CI Status
+Travis CI status page: http://status.travis-ci.com

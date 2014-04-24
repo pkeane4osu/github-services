@@ -1,6 +1,8 @@
 .DS_Store
+.idea
 deploy.rb
 *~
+*.sw[po]
 config/secrets.yml
 config/services.json
 /bin
@@ -8,3 +10,10 @@ vendor/gems
 .bundle
 docs/payload_data
 .rvmrc
+.project
+.settings
+.buildpath
+log
+tmp
+pkg
+.ruby-version

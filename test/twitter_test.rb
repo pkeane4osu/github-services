@@ -1,6 +1,8 @@
 require File.expand_path('../helper', __FILE__)
 
 class TwitterTest < Service::TestCase
+  TWITTER_SHORT_URL_LENGTH_HTTPS = 23
+
   def test_push
     svc = service({'token' => 't', 'secret' => 's'}, payload)
 
@@ -27,6 +29,27 @@ class TwitterTest < Service::TestCase
     assert_equal 'ck', svc.consumer_key
     assert_equal 'cs', svc.consumer_secret
     assert svc.consumer
+  end
+  
+  def test_tweet_length
+    p = payload
+    p['commits'][0]['message']="This is a very long message specifically designed to test the new behaviour of the twitter service hook with extremely long tweets. As should be happening now."
+    svc = service({'token' => 't', 'secret' => 's'}, p)
+    
+    def svc.statuses
+      @statuses ||= []
+    end
+
+    def svc.post(status)
+      statuses << status
+    end
+
+    svc.receive_push
+    
+    svc.statuses.each do |st|
+      st = st.gsub(/http[^ ]+/, "a"*TWITTER_SHORT_URL_LENGTH_HTTPS) # replace the URL with a substitute for the shortened one
+      assert st.length<=140
+    end
   end
 
   def service(*args)
